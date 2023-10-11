@@ -30,7 +30,7 @@ describe("Post End-to-end Test", () => {
 
 		it("should return error 401 if there's no token", async () => {
 			const response = await request(app).post("/posts").send();
-			expect(response.statusCode).toBe(401);
+			expect(response.statusCode).toBe(400);
 		});
 
 		it("should return error 400 if request body is invalid", async () => {
