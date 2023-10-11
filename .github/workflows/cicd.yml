@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       # Configura el Ubuntu para utilizar Node.js con un action oficial de Github
-      - name: Ejecutar las pruebas en un ambiente de Node.js
+      - name: Configurar un entorno de Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
