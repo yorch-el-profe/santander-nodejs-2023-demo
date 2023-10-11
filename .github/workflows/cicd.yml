@@ -27,3 +27,4 @@ jobs:
 
       # Correr los comandos de Node.js para asegurar la integridad del código
       - run: npm install
+      - run: npm test
