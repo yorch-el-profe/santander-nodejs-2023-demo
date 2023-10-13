@@ -6,7 +6,7 @@ router.get("/helloworld", function (request, response) {
 });
 
 router.get("/goodbye", function (request, response) {
-	response.send("GoodBye");
+	response.send("GoodBye!!!");
 });
 
 module.exports = router;
