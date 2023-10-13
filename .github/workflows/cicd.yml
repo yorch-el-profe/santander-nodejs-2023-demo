@@ -39,6 +39,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           script: |
+            source ~/.bashrc
             cd santander-nodejs-2023-demo
             git pull origin master
             npm install --production
