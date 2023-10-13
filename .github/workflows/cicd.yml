@@ -30,6 +30,7 @@ jobs:
       - run: npm test
 
   continous-delivery:
+    needs: continuos-integration
     runs-on: ubuntu-latest
     steps:
       - name: Deploy on server
@@ -39,7 +40,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           script: |
-            source ~/.bashrc
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             cd santander-nodejs-2023-demo
             git pull origin master
             npm install --production
