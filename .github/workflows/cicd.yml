@@ -28,3 +28,18 @@ jobs:
       # Correr los comandos de Node.js para asegurar la integridad del código
       - run: npm install
       - run: npm test
+
+  continous-delivery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          script: |
+            cd santander-nodejs-2023-demo
+            git pull origin master
+            npm install --production
+            pm2 restart src/index.js
