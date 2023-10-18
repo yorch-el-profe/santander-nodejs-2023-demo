@@ -6,9 +6,11 @@ const {
 	getPost,
 	deletePost,
 	updatePost,
+	blockPost,
 } = require("../controllers/post");
 const validator = require("../middlewares/validator");
 const jwtValidator = require("../middlewares/jwt");
+const roleValidator = require("../middlewares/role");
 const {
 	createPostSchema,
 	updatePostSchema,
@@ -35,6 +37,13 @@ router.delete(
 	jwtValidator,
 	validator.params(paramsSchema),
 	deletePost
+);
+router.patch(
+	"/posts/:id",
+	jwtValidator,
+	roleValidator,
+	validator.params(paramsSchema),
+	blockPost
 );
 
 module.exports = router;

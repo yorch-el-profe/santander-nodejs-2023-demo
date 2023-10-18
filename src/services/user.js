@@ -18,3 +18,16 @@ exports.findById = function (id) {
 	// SELECT * FROM users WHERE id = '...';
 	return User.findByPk(id);
 };
+
+exports.blockById = async function (id) {
+	await User.update(
+		{
+			isActive: false,
+		},
+		{
+			where: {
+				id,
+			},
+		}
+	);
+};

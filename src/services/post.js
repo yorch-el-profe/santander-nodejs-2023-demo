@@ -24,3 +24,16 @@ exports.deleteById = async function (id) {
 	const post = await Post.findByPk(id);
 	await post.destroy();
 };
+
+exports.blockById = async function (id) {
+	await Post.update(
+		{
+			isActive: false,
+		},
+		{
+			where: {
+				id,
+			},
+		}
+	);
+};

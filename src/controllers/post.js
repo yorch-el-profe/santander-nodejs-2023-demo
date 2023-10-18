@@ -4,6 +4,7 @@ const {
 	insert,
 	deleteById,
 	update,
+	blockById,
 } = require("../services/post");
 
 exports.getPosts = async function (request, response) {
@@ -34,5 +35,11 @@ exports.updatePost = async function (request, response) {
 exports.deletePost = async function (request, response) {
 	const { id } = request.params;
 	await deleteById(id);
+	response.status(204).end();
+};
+
+exports.blockPost = async function (request, response) {
+	const { id } = request.params;
+	await blockById(id);
 	response.status(204).end();
 };
