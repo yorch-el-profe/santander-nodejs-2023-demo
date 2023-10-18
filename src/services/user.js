@@ -1,7 +1,8 @@
 const User = require("../models/user");
+const { ROLES } = require("../constants");
 
 exports.insert = function (data) {
-	return User.create(data);
+	return User.create({ ...data, roleId: ROLES.USER });
 };
 
 exports.findByUsername = function (username) {
