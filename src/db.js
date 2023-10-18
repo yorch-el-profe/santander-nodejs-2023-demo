@@ -29,7 +29,10 @@ async function seed() {
 	await Promise.allSettled([
 		Role.create({ id: ROLES.USER, name: "USER" }),
 		Role.create({ id: ROLES.ADMIN, name: "ADMIN" }),
-		Role.create({ id: ROLES.ADMIN, name: "MOD" }),
+		Role.create({ id: ROLES.MOD, name: "MOD" }),
+	]);
+
+	await Promise.allSettled([
 		User.create({
 			id: 1,
 			username: "admin",
@@ -38,8 +41,8 @@ async function seed() {
 			roleId: ROLES.ADMIN,
 		}),
 		User.create({
-			id: 3,
-			username: "mod",
+			id: 2,
+			username: "supermod",
 			email: "mod@mod.com",
 			password: "modmodmod",
 			roleId: ROLES.MOD,

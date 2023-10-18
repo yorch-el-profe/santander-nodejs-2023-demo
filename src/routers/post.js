@@ -16,6 +16,7 @@ const {
 	updatePostSchema,
 	paramsSchema,
 } = require("../validations/post");
+const { ROLES } = require("../constants");
 
 router.get("/posts", getPosts);
 router.get("/posts/:id", validator.params(paramsSchema), getPost);
@@ -41,7 +42,7 @@ router.delete(
 router.patch(
 	"/posts/:id",
 	jwtValidator,
-	roleValidator,
+	roleValidator(ROLES.ADMIN, ROLES.MOD),
 	validator.params(paramsSchema),
 	blockPost
 );

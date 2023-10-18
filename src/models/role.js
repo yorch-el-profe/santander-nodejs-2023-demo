@@ -3,7 +3,7 @@ const { sequelize } = require("./sequelize");
 
 module.exports = sequelize.define("roles", {
 	name: {
-		type: DataTypes.ENUM("USER", "ADMIN"),
+		type: DataTypes.ENUM("USER", "ADMIN", "MOD"),
 		allowNull: false,
 	},
 });
