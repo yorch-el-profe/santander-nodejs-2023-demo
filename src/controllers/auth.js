@@ -22,12 +22,31 @@ exports.login = async function (request, response) {
 		});
 	}
 
-	const token = jwt.sign(
-		{ id: user.id, username: user.username },
-		process.env.JWT_SECRET
-	);
+	const payload = { id: user.id };
+
+	const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "5m" });
+
+	const refresh = jwt.sign(payload, process.env.REFRESH_JWT_SECRET, {
+		expiresIn: "1d",
+	});
 
 	response.status(200).json({
 		jwt: token,
+		refresh,
+	});
+};
+
+exports.refresh = function (request, response) {
+	const payload = { id: request.user.id };
+
+	const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "5m" });
+
+	const refresh = jwt.sign(payload, process.env.REFRESH_JWT_SECRET, {
+		expiresIn: "1d",
+	});
+
+	response.status(200).json({
+		jwt: token,
+		refresh,
 	});
 };

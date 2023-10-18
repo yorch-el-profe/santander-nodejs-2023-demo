@@ -31,3 +31,14 @@ exports.blockById = async function (id) {
 		}
 	);
 };
+
+exports.findOneByPayload = async function (payload, done) {
+	const user = await User.findByPk(payload.id);
+
+	if (!user) {
+		return done({ message: "El usuario no existe en la base de datos" });
+	}
+
+	// Se crea el request.user
+	done(null, user);
+};
